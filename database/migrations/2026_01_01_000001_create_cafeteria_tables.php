@@ -356,10 +356,22 @@ return new class extends Migration
                 $table->unsignedBigInteger('OpcionId');
             });
         }
+
+        // 31. Historial Estados Pedido
+        if (!Schema::hasTable('historialestadospedido')) {
+            Schema::create('historialestadospedido', function (Blueprint $table) {
+                $table->id('HistorialId');
+                $table->unsignedBigInteger('PedidoId');
+                $table->integer('EstadoId');
+                $table->unsignedBigInteger('CambiadoPor')->nullable();
+                $table->dateTime('CambiadoEn')->useCurrent();
+            });
+        }
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('historialestadospedido');
         Schema::dropIfExists('detallesmodificadores');
         Schema::dropIfExists('recetas');
         Schema::dropIfExists('productomodificadores');
