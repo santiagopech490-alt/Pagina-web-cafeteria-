@@ -258,6 +258,7 @@ return new class extends Migration
             Schema::create('puntoscliente', function (Blueprint $table) {
                 $table->id('PuntoId');
                 $table->unsignedBigInteger('UsuarioId')->unique();
+                $table->integer('Puntos')->default(0);
                 $table->integer('PuntosAcumulados')->default(0);
             });
         }
@@ -268,9 +269,11 @@ return new class extends Migration
                 $table->id('TransaccionId');
                 $table->unsignedBigInteger('UsuarioId');
                 $table->integer('Puntos');
-                $table->string('TipoTransaccion'); // ACUMULACION, CANJE
+                $table->string('TipoTransaccion')->nullable(); // ACUMULACION, CANJE
+                $table->string('TipoMovimiento')->nullable();
                 $table->string('Concepto')->nullable();
                 $table->dateTime('Fecha')->useCurrent();
+                $table->dateTime('FechaMovimiento')->useCurrent();
             });
         }
 
@@ -344,10 +347,20 @@ return new class extends Migration
                 $table->decimal('CantidadRequerida', 10, 2)->default(1.00);
             });
         }
+
+        // 30. Detalles Modificadores
+        if (!Schema::hasTable('detallesmodificadores')) {
+            Schema::create('detallesmodificadores', function (Blueprint $table) {
+                $table->id('DetalleModificadorId');
+                $table->unsignedBigInteger('DetalleId');
+                $table->unsignedBigInteger('OpcionId');
+            });
+        }
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('detallesmodificadores');
         Schema::dropIfExists('recetas');
         Schema::dropIfExists('productomodificadores');
         Schema::dropIfExists('opcionesmodificador');
