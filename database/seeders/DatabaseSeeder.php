@@ -66,10 +66,10 @@ class DatabaseSeeder extends Seeder
         // 5. Zonas
         if (DB::table('zonas')->count() == 0) {
             DB::table('zonas')->insert([
-                ['ZonaId' => 1, 'Nombre' => 'Salón Principal', 'Descripcion' => 'Área central interior del restaurante'],
-                ['ZonaId' => 2, 'Nombre' => 'Terraza', 'Descripcion' => 'Área al aire libre con vista al jardín'],
-                ['ZonaId' => 3, 'Nombre' => 'Mezzanine VIP', 'Descripcion' => 'Zona reservada en nivel superior'],
-                ['ZonaId' => 4, 'Nombre' => 'Barra de Baristas', 'Descripcion' => 'Periqueras y asientos individuales en barra'],
+                ['ZonaId' => 1, 'Nombre' => 'Salón Principal', 'Descripcion' => 'Área central interior del restaurante', 'Icono' => '🏛️', 'Activa' => 1],
+                ['ZonaId' => 2, 'Nombre' => 'Terraza', 'Descripcion' => 'Área al aire libre con vista al jardín', 'Icono' => '🌿', 'Activa' => 1],
+                ['ZonaId' => 3, 'Nombre' => 'Mezzanine VIP', 'Descripcion' => 'Zona reservada en nivel superior', 'Icono' => '⚜️', 'Activa' => 1],
+                ['ZonaId' => 4, 'Nombre' => 'Barra de Baristas', 'Descripcion' => 'Periqueras y asientos individuales en barra', 'Icono' => '☕', 'Activa' => 1],
             ]);
         }
 

@@ -62,6 +62,8 @@ return new class extends Migration
                 $table->id('ZonaId');
                 $table->string('Nombre');
                 $table->string('Descripcion')->nullable();
+                $table->string('Icono')->nullable();
+                $table->boolean('Activa')->default(true);
             });
         }
 
