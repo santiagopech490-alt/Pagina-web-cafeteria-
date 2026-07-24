@@ -117,5 +117,42 @@ class DatabaseSeeder extends Seeder
                 ['Clave' => 'MENSAJE_BIENVENIDA', 'Valor' => 'Bienvenido a Café Parisien, le esperamos con lo mejor de la alta repostería.'],
             ]);
         }
+
+        // 10. Tipos de Modificador
+        if (DB::table('tiposmodificador')->count() == 0) {
+            DB::table('tiposmodificador')->insert([
+                ['TipoId' => 1, 'Nombre' => 'Tipo de Leche'],
+                ['TipoId' => 2, 'Nombre' => 'Saborizante / Jarabe Extra'],
+                ['TipoId' => 3, 'Nombre' => 'Nivel de Dulzor / Azúcar'],
+            ]);
+        }
+
+        // 11. Opciones de Modificador
+        if (DB::table('opcionesmodificador')->count() == 0) {
+            DB::table('opcionesmodificador')->insert([
+                ['OpcionId' => 1, 'TipoId' => 1, 'Nombre' => 'Leche Entera', 'PrecioExtra' => 0.00],
+                ['OpcionId' => 2, 'TipoId' => 1, 'Nombre' => 'Leche Deslactosada', 'PrecioExtra' => 0.00],
+                ['OpcionId' => 3, 'TipoId' => 1, 'Nombre' => 'Leche de Almendras', 'PrecioExtra' => 10.00],
+                ['OpcionId' => 4, 'TipoId' => 1, 'Nombre' => 'Leche de Avena', 'PrecioExtra' => 12.00],
+                ['OpcionId' => 5, 'TipoId' => 2, 'Nombre' => 'Vainilla Francesa', 'PrecioExtra' => 15.00],
+                ['OpcionId' => 6, 'TipoId' => 2, 'Nombre' => 'Caramelo Salado', 'PrecioExtra' => 15.00],
+                ['OpcionId' => 7, 'TipoId' => 2, 'Nombre' => 'Avellana Gourmet', 'PrecioExtra' => 15.00],
+                ['OpcionId' => 8, 'TipoId' => 3, 'Nombre' => 'Dulzor Normal (100%)', 'PrecioExtra' => 0.00],
+                ['OpcionId' => 9, 'TipoId' => 3, 'Nombre' => 'Medio Dulzor (50%)', 'PrecioExtra' => 0.00],
+                ['OpcionId' => 10, 'TipoId' => 3, 'Nombre' => 'Sin Azúcar (0%)', 'PrecioExtra' => 0.00],
+            ]);
+        }
+
+        // 12. Producto Modificadores (asociar bebidas a modificadores)
+        if (DB::table('productomodificadores')->count() == 0) {
+            $bebidasIds = DB::table('productos')->pluck('ProductoId');
+            foreach ($bebidasIds as $pId) {
+                DB::table('productomodificadores')->insert([
+                    ['ProductoId' => $pId, 'TipoId' => 1],
+                    ['ProductoId' => $pId, 'TipoId' => 2],
+                    ['ProductoId' => $pId, 'TipoId' => 3],
+                ]);
+            }
+        }
     }
 }

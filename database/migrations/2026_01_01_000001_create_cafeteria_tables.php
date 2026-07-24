@@ -311,14 +311,34 @@ return new class extends Migration
         // 26. Modificadores
         if (!Schema::hasTable('tiposmodificador')) {
             Schema::create('tiposmodificador', function (Blueprint $table) {
-                $table->id('TipoModificadorId');
+                $table->id('TipoId');
                 $table->string('Nombre');
+            });
+        }
+
+        if (!Schema::hasTable('opcionesmodificador')) {
+            Schema::create('opcionesmodificador', function (Blueprint $table) {
+                $table->id('OpcionId');
+                $table->unsignedBigInteger('TipoId');
+                $table->string('Nombre');
+                $table->decimal('PrecioExtra', 10, 2)->default(0.00);
+            });
+        }
+
+        if (!Schema::hasTable('productomodificadores')) {
+            Schema::create('productomodificadores', function (Blueprint $table) {
+                $table->id('ProductoModificadorId');
+                $table->unsignedBigInteger('ProductoId');
+                $table->unsignedBigInteger('TipoId');
             });
         }
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('productomodificadores');
+        Schema::dropIfExists('opcionesmodificador');
+        Schema::dropIfExists('tiposmodificador');
         Schema::dropIfExists('tiposmodificador');
         Schema::dropIfExists('ordenescompra');
         Schema::dropIfExists('proveedores');
