@@ -1,0 +1,116 @@
+<html><head><meta charset='utf-8'/><style>
+body { font-family: 'Arial', sans-serif; margin: 40px; color: #333333; line-height: 1.5; }
+h1 { font-family: 'Georgia', serif; font-size: 24pt; color: #2F4858; text-align: center; margin-bottom: 20pt; }
+h2 { font-family: 'Georgia', serif; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt; }
+h3 { font-family: 'Arial', sans-serif; font-size: 12pt; color: #C4A484; margin-top: 15pt; }
+p, li { font-size: 10pt; }
+ul { margin-left: 20px; }
+span.tag { font-weight: bold; color: #2F4858; }
+</style></head><body>
+<h1>Auditoria y Justificacion de Casos de Uso - Cafe Parisien</h1>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 1: Gestion de Inventario y Almacen</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>productos, categorias</code></p>
+<p><b>Estado actual del proyecto:</b> Parcialmente implementado. Actualmente el stock se descuenta por producto final en el checkout, no por insumo basico.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 30 (Descuento proporcional por receta o BOM). Es critico para controlar la merma de cafe en grano y leche.</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 150 al 300 (Gestion de multiples sucursales y bodegas). Al ser un local unico, la transferencia entre almacenes y sobrestock masivo es sobre-ingenieria.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 2: Punto de Venta (POS) y Gestion de Caja</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>pedidos, detallespedido, metodospago, facturas</code></p>
+<p><b>Estado actual del proyecto:</b> Parcialmente implementado. El cobro basico existe en el frontend, pero la auditoria de caja (Corte X y Z) esta ausente.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 50 al 90 (Apertura de caja, arqueo ciego, retiros parciales de efectivo y Corte Z obligatorio). Previene robos de efectivo.</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 250 al 300 (Pagos automaticos con criptomonedas o integracion con cajeros de cobro automatico). No justifican el costo de desarrollo para una cafeteria bistro boutique.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 3: Fidelizacion y CRM (Club Parisien)</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>puntoscliente, transaccionespuntos, usuarios</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Existen las tablas, pero no hay logica implementada en el checkout para acumular o canjear.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 25 (Acumulacion automatica de puntos del 10% de la compra, y validacion de saldo al hacer checkout).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 150 al 200 (Campanas de marketing automatizadas con geocercas push y niveles VIP Oro/Plata dinamicos). Es mejor manejarlo de forma manual o con plantillas simples al inicio.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 4: Integracion con Plataformas de Delivery (Uber/Rappi)</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>metodosentrega, pedidos</code></p>
+<p><b>Estado actual del proyecto:</b> No implementado. Solo se soporta 'Para llevar' o 'Mesa' de forma local.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 15 (Mapeo de pedidos externos de delivery e ingreso manual al POS por el cajero).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 100 al 300 (Integracion directa por Webhooks/APIs de Uber/Rappi con despacho automatizado). Las APIs oficiales de Uber/Rappi cobran miles de dolares por integrarse directamente, es inviable para un negocio boutique.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 5: Gestion de Personal, Turnos y Asistencia</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>empleados, turnos, asignacionturnos</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Solo editable mediante el administrador en base de datos cruda.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 20 (Registro de asistencia mediante PIN del empleado en la terminal de caja).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Calculo automatizado de primas vacacionales y bolsa de propinas ponderada automatizada en nomina). Se opera de forma manual en Excel mas facilmente.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 6: Modulo KDS (Kitchen Display System)</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>pedidos, detallespedido, estadospedido</code></p>
+<p><b>Estado actual del proyecto:</b> No implementado. El barista depende del ticket impreso o de que el administrador edite la base de datos.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 100 al 140 (Pantalla visual de comanda de cocina responsiva tactil con semaforizacion de retrasos).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Integracion de KDS con smartwatches de meseros o KDS de despacho para repartidores).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 7: Reportes Financieros, Contabilidad y Auditoria</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>logsauditoria, facturas, detallesfactura</code></p>
+<p><b>Estado actual del proyecto:</b> La tabla de logs de auditoria captura las inserciones, pero no hay interfaz de reportes de rentabilidad.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 50 al 80 (Calculo automatizado de rentabilidad del dia restando costos fijos cargados en el sistema).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Generacion e integracion de polizas contables automatizadas para ERP externos como SAP).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 8: Facturacion Fiscal Automatizada</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>facturas, detallesfactura</code></p>
+<p><b>Estado actual del proyecto:</b> Tablas estructuradas. No hay conexion con proveedor de timbrado fiscal.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 60 al 90 (Generacion de portal web simple de autofacturacion ingresando el codigo del ticket).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 150 al 300 (Timbrado fiscal en lote de facturas globales o cancelacion asincrona automatizada).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 9: Gestion de Mesas y Reservaciones</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>mesas, reservaciones</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Falta logica de validacion de colisiones horarias en reservas.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 40 (Validacion en backend que impida colisiones de horario en la misma mesa fisica).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 150 al 300 (Mapa en 3D interactivo en la web del comensal). Una lista responsiva 2D es mas que suficiente.</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 10: Modulo de Compras y Relacion con Proveedores</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>proveedores, ordenescompra, detallesordencompra</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Requiere interaccion a traves del CRUD plano.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 20 (Carga de insumos recibidos de ordenes de compra directo al stock).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 100 al 300 (Licitacion comparativa automatizada de precios y contratos).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 11: Configuracion del Sistema y Seguridad</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>roles, usuarios, logsauditoria</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Middleware basico de administracion activo.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 50 (Control de acceso por roles de usuario: Administrador, Cajero, Barista, Mesero).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Rotacion obligatoria de contraseÃ±as de seguridad bancaria cada 30 dias).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 12: Modulo de Gestion de Recetas y Menu Dinamico</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>productos, categorias, tiposmodificador, opcionesmodificador</code></p>
+<p><b>Estado actual del proyecto:</b> Estructurado en base de datos. Mapeado pero no implementado en el flujo de carrito.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 100 (Gestion de modificadores y extras con precio dinamico sumado en checkout).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Calibracion automatica del precio de recetas basado en APIs de inflacion).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 13: Modulo de Encuestas y Calificaciones (Resenas)</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>resenasproductos</code></p>
+<p><b>Estado actual del proyecto:</b> Tabla de resenas mapeada. Falta logica de envio de encuesta de satisfaccion automatizada.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 20 (Guardar calificacion de 1 a 5 estrellas del producto en el portal del comensal).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 150 al 300 (Analisis de sentimiento del texto de la resena usando Inteligencia Artificial).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 14: Modulo de Marketing y Campanas de Cupones</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>cupones</code></p>
+<p><b>Estado actual del proyecto:</b> Funciona de forma basica aplicando descuento de porcentaje en el checkout.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 40 (Validacion de fecha de vigencia y cupon de un solo uso por cliente).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 200 al 300 (Generacion dinamica masiva de cupones por cumpleanos usando webhooks de CRM).</li>
+</ul>
+<h2 style="font-family: Georgia; font-size: 15pt; color: #2F4858; border-bottom: 2px solid #C4A484; padding-bottom: 5px; margin-top: 24pt; margin-bottom: 12pt;">Modulo 15: Modulo de Mantenimiento de Activos y Equipos</h2>
+<p><b>Tablas asociadas en la BD:</b> <code>configuracionsistema</code></p>
+<p><b>Estado actual del proyecto:</b> No implementado.</p>
+<ul>
+<li><span style="color: green; font-weight: bold;">[SI] Casos sugeridos a implementar:</span> Casos del 1 al 15 (Registro basico de fechas de mantenimiento preventivo de maquinas de espresso).</li>
+<li><span style="color: red; font-weight: bold;">[NO] Casos descartados (Baja prioridad):</span> Casos del 100 al 300 (Sensores IoT conectados para reportar fallas electricas de refrigeracion de postres).</li>
+</ul>
+</body></html>
