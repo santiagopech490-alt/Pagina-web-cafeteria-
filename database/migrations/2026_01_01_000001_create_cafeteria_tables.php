@@ -332,10 +332,21 @@ return new class extends Migration
                 $table->unsignedBigInteger('TipoId');
             });
         }
+
+        // 29. Recetas
+        if (!Schema::hasTable('recetas')) {
+            Schema::create('recetas', function (Blueprint $table) {
+                $table->id('RecetaId');
+                $table->unsignedBigInteger('ProductoId');
+                $table->unsignedBigInteger('InsumoProductoId');
+                $table->decimal('CantidadRequerida', 10, 2)->default(1.00);
+            });
+        }
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('recetas');
         Schema::dropIfExists('productomodificadores');
         Schema::dropIfExists('opcionesmodificador');
         Schema::dropIfExists('tiposmodificador');
