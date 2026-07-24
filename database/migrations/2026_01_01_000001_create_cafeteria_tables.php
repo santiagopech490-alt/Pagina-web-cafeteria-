@@ -83,6 +83,7 @@ return new class extends Migration
         if (!Schema::hasTable('reservaciones')) {
             Schema::create('reservaciones', function (Blueprint $table) {
                 $table->id('ReservacionId');
+                $table->unsignedBigInteger('UsuarioId')->nullable();
                 $table->unsignedBigInteger('MesaId')->nullable();
                 $table->string('NombreCliente');
                 $table->string('Telefono')->nullable();
