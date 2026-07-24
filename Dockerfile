@@ -12,7 +12,7 @@ WORKDIR /var/www
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 
 # Crear directorio de base de datos, archivo sqlite y asignar permisos
 RUN mkdir -p /var/www/database && \
