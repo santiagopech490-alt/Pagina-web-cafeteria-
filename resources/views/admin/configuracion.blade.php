@@ -74,7 +74,7 @@
             @foreach ($configs as $c)
               <tr style="border-bottom: 1px solid var(--border); background: var(--bg-card); font-size: 0.92rem;">
                 <td style="padding: 16px 14px; font-weight: bold; color: var(--accent-navy);">
-                  #{{ $c->ConfigId }}
+                  #{{ $c->ConfiguracionId ?? $c->ConfigId ?? $c->id ?? 1 }}
                 </td>
                 <td style="padding: 16px 14px; font-weight: 600; color: var(--accent-navy);">
                   🔑 {{ $c->Clave }}
